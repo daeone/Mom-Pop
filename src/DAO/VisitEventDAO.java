@@ -1,9 +1,12 @@
 package DAO;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -21,6 +24,21 @@ public class VisitEventDAO {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void createVisitEvent(String bid, String eventtype) throws SQLException{
+		
+		String day = new SimpleDateFormat("MMddyyyy").format(new Date());
+		System.out.println(day);
+		String query = "INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('" 
+				+ day + "', '" + bid + "', '" + eventtype + "')";
+		Connection con = this.ds.getConnection();
+		Statement s = con.createStatement();
+		s.executeUpdate(query);
+		
+		s.close();
+		con.close();
+		
 	}
 	
 	public LinkedList<VisitEventBean> retrieveBooksSold() throws SQLException{
