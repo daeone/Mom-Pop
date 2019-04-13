@@ -16,8 +16,6 @@ import DAO.ReviewDAO;
 import DAO.AccountDAO;
 import DAO.AddressDAO;
 import DAO.VisitEventDAO;
-import java.util.Collection;
-
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -100,11 +98,6 @@ public class model {
 
     
     /****************** Books Module from here *****************/
-   public Collection<BookBean> getAllBooks() throws Exception {
-
-        return bookDAO.retrieveAllBooks().values();
-
-     }
 
     public Map<String, BookBean> retrieveBooksByCategory(String categoryToSearch) throws Exception {
 

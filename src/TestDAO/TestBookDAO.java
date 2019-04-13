@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.BookDAO;
+import bean.BookBean;
 
 /**
  * Servlet implementation class TestBookDAO
@@ -47,7 +48,7 @@ public class TestBookDAO extends HttpServlet {
 		System.out.println("Retrieving all books -----------------");
 		
 		try {
-			results = bookDAO.retrieveAllBooks();
+			results = (Map<String, BookBean>) bookDAO.retrieveAllBooks();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
