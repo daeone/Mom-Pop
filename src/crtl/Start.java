@@ -361,7 +361,7 @@ public class Start extends HttpServlet {
 
 				} else {
 					model.addProductToCart(request.getParameter("bid"), request.getParameter("title"), username,
-							new Integer(request.getParameter("price").trim()), 1);
+							new Float(request.getParameter("price").trim()), 1);
 				}
 			}
 
@@ -398,8 +398,6 @@ public class Start extends HttpServlet {
 				}
 				// b. check if order has been placed. 
 				if(request.getParameter("confirmOrder1") != null) {
-					String cardLastName = request.getParameter("cardLastName");
-					String cardFirstName = request.getParameter("cardFirstName");
 					// b1. check if current user has existing address. 
 					if(id != 0) {
 						// b-1a. check if the user has requested the different address. 
@@ -423,7 +421,7 @@ public class Start extends HttpServlet {
 									int addressId = model.addNewAddress(differentStreet, differentProvince,
 											differentCountry, differentZip, differentPhone);
 									List<CartBean> cartList = model.retrieveUserCart(username);
-									String resultMsg = model.placeOrder(cardLastName, cardFirstName, addressId,
+									String resultMsg = model.placeOrder(currentUser.getLname(), currentUser.getFname(), addressId,
 											cartList);
 									request.getSession().setAttribute(PAYMENT_RESULT_MESSAGE, resultMsg);
 
@@ -446,7 +444,7 @@ public class Start extends HttpServlet {
 							else {
 								try {
 									List<CartBean> cartList = model.retrieveUserCart(username);
-									String resultMsg = model.placeOrder(cardLastName, cardFirstName, id, cartList);
+									String resultMsg = model.placeOrder(currentUser.getLname(), currentUser.getFname(), id, cartList);
 									request.getSession().setAttribute(PAYMENT_RESULT_MESSAGE, resultMsg);
 									
 									// delete books from cart and add VisitEvent if order is processed.
@@ -483,7 +481,7 @@ public class Start extends HttpServlet {
 							
 							// Add cart items and place an order
 							List<CartBean> cartList = model.retrieveUserCart(username);
-							String resultMsg = model.placeOrder(cardLastName, cardFirstName, addressId, cartList);
+							String resultMsg = model.placeOrder(currentUser.getLname(), currentUser.getFname(), addressId, cartList);
 							request.getSession().setAttribute(PAYMENT_RESULT_MESSAGE, resultMsg);
 							
 							// delete books from cart and add VisitEvent if order is processed.
