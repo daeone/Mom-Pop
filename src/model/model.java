@@ -37,51 +37,16 @@ public class model {
 
         try {
         	addressDAO = new AddressDAO();
+        	 bookDAO = new BookDAO();
+        	 reviewDAO = new ReviewDAO();
+        	 accountDAO = new AccountDAO();
+        	 poDAO = new PODAO();
+        	 cartDAO = new CartDAO();
+        	 visitEventDAO = new VisitEventDAO();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        try {
-            bookDAO = new BookDAO();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            reviewDAO = new ReviewDAO();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            accountDAO = new AccountDAO();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-        	poDAO = new PODAO();
-
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            cartDAO = new CartDAO();
-
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        try {
-			visitEventDAO = new VisitEventDAO();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-      
-
     }
     
     /****************** Address Module from here *****************/
@@ -182,7 +147,7 @@ public class model {
             return new ArrayList<>();
     }
     
-    public void addProductToCart(String bid,String title, String username,int price, int quantity ){
+    public void addProductToCart(String bid,String title, String username,float price, int quantity ){
         CartBean b = this.getCartProductByProductId(bid, username);
         if(null==b){
             cartDAO.addProductToCart(bid, title, username, price, quantity);
@@ -201,8 +166,8 @@ public class model {
          cartDAO.removeItem(bid,username);
     }
     
-    public void updateCartProduct(String bid, String username,float price,int quantity){
-       cartDAO.updateCartProduct(bid, username, price, quantity,false);
+    public void updateCartProduct(String bid, String username,float f,int quantity){
+       cartDAO.updateCartProduct(bid, username, f, quantity,false);
     }
     
     public int countCartItem(String username){

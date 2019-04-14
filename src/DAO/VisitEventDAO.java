@@ -29,14 +29,13 @@ public class VisitEventDAO {
 	public void createVisitEvent(String bid, String eventtype) throws SQLException{
 		
 		String day = new SimpleDateFormat("MMddyyyy").format(new Date());
-		System.out.println(day);
-		String query = "INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('" 
-				+ day + "', '" + bid + "', '" + eventtype + "')";
+		String query = "INSERT INTO VisitEvent (day, bid, eventtype) VALUES (\'" 
+				+ day + "\', \'" + bid + "\', \'" + eventtype + "\')";
 		Connection con = this.ds.getConnection();
-		Statement s = con.createStatement();
-		s.executeUpdate(query);
+		PreparedStatement p = con.prepareStatement(query);
+		p.executeUpdate();
 		
-		s.close();
+		p.close();
 		con.close();
 		
 	}
