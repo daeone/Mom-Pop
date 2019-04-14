@@ -48,7 +48,7 @@ public class CartDAO {
 
 	}
 
-	public CartBean addProductToCart(String bid, String title, String username, int price, int quantity) {
+	public CartBean addProductToCart(String bid, String title, String username, float price, int quantity) {
 
 		try {
 			CartBean b = new CartBean(username, bid, title, price, quantity);
